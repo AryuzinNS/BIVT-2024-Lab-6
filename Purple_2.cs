@@ -19,7 +19,7 @@ namespace Lab_6
 			// свойства
 			public string Name { get { return _name; } }
 			public string Surname { get { return _surname; } }
-			public int Dictance { get { return _dictance; } }
+			public int Distance { get { return _dictance; } }
 			public int[] Marks
 			{
 				get
@@ -72,7 +72,7 @@ namespace Lab_6
 			// методы
 			public void Jump(int distance, int[] marks)
 			{
-				if (this.Dictance != 0) return;
+				if (this.Distance != 0) return;
 				if (marks == null ) return;
 				if (marks.Length != 5) return;
 				_dictance = distance;
