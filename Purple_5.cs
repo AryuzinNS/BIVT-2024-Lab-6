@@ -63,23 +63,23 @@ namespace Lab_6
 
 			//свойства
 			public string Name => _name;
-			public Response[] Responses
-			{
-				get
-				{
-					if(_responses == null)
-					{
-						return null;
-					}
-					if(_responses.Length == 0)
-					{
-						return null;
-					}
-					Response[] resps = new Response[_responses.Length];
-					Array.Copy(_responses, resps, _responses.Length);
-					return resps;
-				}
-			}
+			public Response[] Responses => _responses;
+			//{
+			//	get
+			//	{
+			//		if(_responses == null)
+			//		{
+			//			return null;
+			//		}
+			//		if(_responses.Length == 0)
+			//		{
+			//			return null;
+			//		}
+			//		Response[] resps = new Response[_responses.Length];
+			//		Array.Copy(_responses, resps, _responses.Length);
+			//		return resps;
+			//	}
+			//}
 
 
 			//конструкторы

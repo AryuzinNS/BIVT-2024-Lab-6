@@ -36,6 +36,7 @@ namespace Lab_6
 			public void Run(double time)
 			{
 				if (_time_set) { return; }
+				if(_time != default(double)) { return; }
 				_time = time;
 				_time_set = true;
 			}
@@ -54,16 +55,16 @@ namespace Lab_6
 
 			//свойства
 			public string Name { get { return _name; } }
-			public Sportsman[] Sportsmen
-			{
-				get
-				{
-					if (_sportsmen == null) { return null; }
-					Sportsman[] sportsmen = new Sportsman[_sportsmen.Length];
-					Array.Copy(_sportsmen, sportsmen, _sportsmen.Length);
-					return sportsmen;
-				}
-			}
+			public Sportsman[] Sportsmen => _sportsmen;
+			//{
+			//	get
+			//	{
+			//		if (_sportsmen == null) { return null; }
+			//		Sportsman[] sportsmen = new Sportsman[_sportsmen.Length];
+			//		Array.Copy(_sportsmen, sportsmen, _sportsmen.Length);
+			//		return sportsmen;
+			//	}
+			//}
 
 			//конструкторы
 
@@ -77,11 +78,13 @@ namespace Lab_6
 
 			public Group(Group group)
 			{
-				if(_sportsmen == null || group.Sportsmen == null)
+				_name = group.Name;
+				if (group.Sportsmen == null)
 				{
+					_sportsmen = new Sportsman[0];
 					return;
 				}
-				_name = group._name;
+				_sportsmen = new Sportsman[group.Sportsmen.Length];
 				Array.Copy(group.Sportsmen, _sportsmen, group.Sportsmen.Length);
 			}
 
@@ -95,10 +98,13 @@ namespace Lab_6
 
 			public void Add(Sportsman[] sportsmen)
 			{
-                Sportsman[] old = this.Sportsmen;
-                _sportsmen = new Sportsman[old.Length + sportsmen.Length];
-                old.CopyTo(this._sportsmen, 0);
-                sportsmen.CopyTo(this._sportsmen, old.Length);
+				if (sportsmen == null || _sportsmen == null) {
+							return;
+				} 
+
+				int len = _sportsmen.Length;
+				Array.Resize(ref _sportsmen, len + sportsmen.Length);
+				Array.Copy(sportsmen, 0, _sportsmen, len, sportsmen.Length);
             }
 
 			public void Add(Group group)

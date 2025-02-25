@@ -47,10 +47,10 @@ namespace Lab_6
             {
                 get
                 {
-                    //if (_places == null)
-                    //{
-                    //	return 0;
-                    //}
+                    if (_places == null)
+                    {
+                    	return 0;
+                    }
                     var score = _places.Sum();
                     return score;
                 }
