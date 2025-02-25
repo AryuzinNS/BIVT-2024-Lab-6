@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -103,13 +104,16 @@ namespace Lab_6
 			//методы
 			public void SetCriterias(double[] coefs)
 			{
-				if(_coefs == null ||coefs == null || coefs.Length != 4) { return; }
-				_coefs = coefs;
+				if(_coefs == null ||coefs == null ) { return; }
+				for(int i = 0; i < 4; ++i)
+				{
+					_coefs[i] = coefs[i];
+				}
 			}
 
 			public void Jump(int[] marks)
 			{
-				if (marks == null || _marks == null || _marks.Length != 7) 
+				if (marks == null || _marks == null) 
 				{
 					return;
 				}
@@ -117,7 +121,7 @@ namespace Lab_6
 				{
 					return;
 				}
-				for (int i = 0; i < marks.Length; i++)
+				for (int i = 0; i < 7; i++)
 				{
 					_marks[_index_of_jump, i] = marks[i];
 				}

@@ -36,21 +36,7 @@ namespace Lab_6
 				get
 				{
 					if(_marks == null) { return 0; }
-					int total_points = 0;
-					int mi = 10000, ma = 0;
-					for (int i = 0; i < _marks.Length; i++)
-					{
-						total_points += _marks[i];
-						if (_marks[i] > ma)
-						{
-							ma = _marks[i];
-						}
-						if (_marks[i] < mi)
-						{
-							mi = _marks[i];
-						}
-					}
-					total_points -= (mi + ma);
+					int total_points = _marks.Sum() - _marks.Max() - _marks.Min();
 					int pts_for_dst = 60;
 					if (_dictance > 120)
 					{
@@ -86,9 +72,9 @@ namespace Lab_6
 			// методы
 			public void Jump(int distance, int[] marks)
 			{
-				if (distance < 0) return;
-				if (marks == null || marks.Length == 0) return;
-				if (marks.Length > 5) return;
+				if (this.Dictance != 0) return;
+				if (marks == null ) return;
+				if (marks.Length != 5) return;
 				_dictance = distance;
 
 				_marks = marks;

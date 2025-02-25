@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Lab_6
 {
@@ -105,8 +106,9 @@ namespace Lab_6
             public static void Sort(Participant[] array)
             {
                 if (array == null || array.Length < 2) { return; }
-                Participant[] sortedarr = array.OrderBy(x => x.Score).ThenBy(x => x.Places.Min()).ThenByDescending(x => x.Marks.Sum()).ToArray();
-
+                Participant[] sortedarr = array.Where(x => x.Marks != null).OrderBy(x => x.Score).ThenBy(x => x.Places.Min()).ThenByDescending(x => x.Marks.Sum()).ToArray();
+                var nulls = array.Where(x => x.Marks == null || x.Places == null).ToArray();
+                sortedarr = sortedarr.Concat(nulls).ToArray();
                 Array.Copy(sortedarr, array, array.Length);
             }
 
